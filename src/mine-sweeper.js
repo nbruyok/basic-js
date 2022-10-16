@@ -23,11 +23,70 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  const board = [];
+  const column = matrix[0].length;
+
+  for (let i = 0; i < matrix.length; i++) {
+    //строка
+    board.push([]);
+    for (let j = 0; j < column; j++) {
+      // колонна этой строки
+      board[i][j] = 0;
+      //above
+      if (matrix[i - 1] != undefined) {
+        if (matrix[i - 1][j]) {
+          board[i][j]++;
+        }
+      }
+      //below
+      if (matrix[i + 1] != undefined) {
+        if (matrix[i + 1][j]) {
+          board[i][j]++;
+        }
+      }
+      //left
+      if (matrix[i][j - 1] != undefined) {
+        if (matrix[i][j - 1]) {
+          board[i][j]++;
+        }
+      }
+      //right
+      if (matrix[i][j + 1] != undefined) {
+        if (matrix[i][j + 1]) {
+          board[i][j]++;
+        }
+      }
+      //top left
+      if (matrix[i - 1] != undefined) {
+        if (matrix[i - 1][j - 1]) {
+          board[i][j]++;
+        }
+      }
+      //top right
+      if (matrix[i - 1] != undefined) {
+        if (matrix[i - 1][j + 1]) {
+          board[i][j]++;
+        }
+      }
+      //bottom left
+      if (matrix[i + 1] != undefined) {
+        if (matrix[i + 1][j - 1]) {
+          board[i][j]++;
+        }
+      }
+      //bottom right
+      if (matrix[i + 1] != undefined) {
+        if (matrix[i + 1][j + 1]) {
+          board[i][j]++;
+        }
+      }
+    }
+  }
+
+  return board;
 }
 
 module.exports = {
-  minesweeper
+  minesweeper,
 };
